@@ -14,7 +14,7 @@ source:
     - 0003-Fix-target-dependencies-in-Makefile.patch  # [linux64 and cuda_compiler_version != "None"]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [py2k or win]
   script:
     - "{{ PYTHON }} -m pip install . --no-deps -vv"
