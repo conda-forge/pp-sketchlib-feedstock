@@ -14,8 +14,8 @@ source:
     - 0003-Fix-target-dependencies-in-Makefile.patch  # [linux64 and cuda_compiler_version != "None"]
 
 build:
-  number: 0
-  skip: True  # [py2k or win]
+  number: 1
+  skip: True  # [py2k or win or cuda_compiler_version == '9.2']
   script:
     - "{{ PYTHON }} -m pip install . --no-deps -vv"
   missing_dso_whitelist:
@@ -31,7 +31,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
-    - cmake  # [not linux64 or cuda_compiler_version == "None"]
+    - cmake
   host:
     - python
     - pip
