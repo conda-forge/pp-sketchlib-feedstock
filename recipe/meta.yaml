@@ -15,7 +15,7 @@ source:
 
 build:
   number: 1
-  skip: True  # [py2k or win]
+  skip: True  # [py2k or win or cuda_compiler_version == '9.2']
   script:
     - "{{ PYTHON }} -m pip install . --no-deps -vv"
   missing_dso_whitelist:
