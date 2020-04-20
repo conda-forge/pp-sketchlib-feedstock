@@ -9,9 +9,7 @@ source:
   url: https://github.com/johnlees/{{ name|lower }}/archive/v{{ version }}.tar.gz
   sha256: 42737d97b004199c2ae82ef9476a17bb82bcfbc0b313f8ecd2cb2eb68b7c4b9b
   patches:
-    - 0001-Replace-cmake-with-make.patch  # [linux64 and cuda_compiler_version != "None"]
-    - 0002-Pass-libloc-to-make-command.patch  # [linux64 and cuda_compiler_version != "None"]
-    - 0003-Fix-target-dependencies-in-Makefile.patch  # [linux64 and cuda_compiler_version != "None"]
+    - 0001-Use-makefile-in-setup.py.patch  # [linux64 and cuda_compiler_version != "None"]
 
 build:
   number: 0
