@@ -10,6 +10,7 @@ source:
   sha256: 42737d97b004199c2ae82ef9476a17bb82bcfbc0b313f8ecd2cb2eb68b7c4b9b
   patches:
     - 0001-Use-makefile-in-setup.py.patch  # [linux64 and cuda_compiler_version != "None"]
+    - 0002-Fix-CUDA-LDLIBS.patch  # [linux64 and cuda_compiler_version != "None"]
 
 build:
   number: 0
