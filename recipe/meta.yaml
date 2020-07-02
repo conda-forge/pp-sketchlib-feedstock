@@ -10,6 +10,7 @@ source:
   sha256: 1a5c192259264b532e4fe8415e92608fcb4eb92e080b04e7defa4f52a9aa64f8
   patches:
     - 0001-Use-makefile-in-setup.py.patch  # [linux64 and cuda_compiler_version != "None"]
+    - 0002-Make-rng-constexpr-for-clang.patch  # [osx]
 
 build:
   number: 0
@@ -44,6 +45,7 @@ requirements:
   run:
     - python
     - numpy
+    - scipy
     - libblas * *openblas
     - openblas
     - zlib
