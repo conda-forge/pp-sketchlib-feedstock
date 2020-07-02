@@ -50,7 +50,7 @@ requirements:
     - openblas
     - zlib
     - h5py
-    - libgfortran-ng
+    - libgfortran-ng  # [linux64]
     - gfortran_impl_osx-64  # [osx]
 
 test:
