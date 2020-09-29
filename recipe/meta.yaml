@@ -13,7 +13,7 @@ build:
   number: 0
   skip: true  # [py2k or win or cuda_compiler_version == '9.2']
   script:
-    - export SKETCHLIB_INSTALL=conda # [linux64 and cuda_compiler_version != "None"]
+    - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
     - {{ PYTHON }} -m pip install . --no-deps -vv
   missing_dso_whitelist:
     - '*/libcuda.*'
@@ -39,7 +39,8 @@ requirements:
     - armadillo
     - hdf5
     - openblas
-    - openmp
+    - llvm-openmp  # [osx]
+    - libgomp      # [linux64]
   run:
     - python
     - numpy
@@ -48,7 +49,7 @@ requirements:
     - openblas
     - zlib
     - h5py
-    - libgfortran-ng  # [linux64]
+    - libgfortran-ng        # [linux64]
     - gfortran_impl_osx-64  # [osx]
 
 test:
