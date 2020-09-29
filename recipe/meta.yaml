@@ -10,7 +10,7 @@ source:
   sha256: e0aafb3f670cf0265be5a774ffe5607ad8046940743e6cd217d4dc653483340c
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py2k or win or cuda_compiler_version == '9.2']
   script:
     - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
