@@ -13,8 +13,8 @@ build:
   number: 0
   skip: true  # [py2k or win or cuda_compiler_version == '9.2']
   script:
-    - export SKETCHLIB_INSTALL=conda &&
-      {{ PYTHON }} -m pip install . --no-deps -vv
+    - export SKETCHLIB_INSTALL=conda # [linux64 and cuda_compiler_version != "None"]
+    - {{ PYTHON }} -m pip install . --no-deps -vv
   missing_dso_whitelist:
     - '*/libcuda.*'
   ignore_run_exports:
