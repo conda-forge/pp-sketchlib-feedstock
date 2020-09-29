@@ -8,15 +8,13 @@ package:
 source:
   url: https://github.com/johnlees/{{ name|lower }}/archive/v{{ version }}.tar.gz
   sha256: e0aafb3f670cf0265be5a774ffe5607ad8046940743e6cd217d4dc653483340c
-  patches:
-    - 0001-Use-makefile-in-setup.py.patch  # [linux64 and cuda_compiler_version != "None"]
-    - 0002-Make-rng-constexpr-for-clang.patch  # [osx]
 
 build:
   number: 0
   skip: true  # [py2k or win or cuda_compiler_version == '9.2']
   script:
-    - {{ PYTHON }} -m pip install . --no-deps -vv
+    - export SKETCHLIB_INSTALL=conda &&
+      {{ PYTHON }} -m pip install . --no-deps -vv
   missing_dso_whitelist:
     - '*/libcuda.*'
   ignore_run_exports:
