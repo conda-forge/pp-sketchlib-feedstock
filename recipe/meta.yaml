@@ -10,7 +10,7 @@ source:
   sha256: 6eb091825b8a259b0254ccd1e7b6773db4a3791f2843b9725e02ba4a87119bef
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py2k or win or cuda_compiler_version == '9.2']
   script:
     - {{ PYTHON }} -m pip install . --no-deps -vv
