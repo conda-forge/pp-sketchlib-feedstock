@@ -29,7 +29,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
-    - cmake >= 3.19
+    - cmake >=3.19
   host:
     - python
     - pip
