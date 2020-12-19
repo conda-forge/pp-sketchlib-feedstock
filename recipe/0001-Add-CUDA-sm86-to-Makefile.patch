@@ -1,0 +1,25 @@
+From 738f45346214abba77e50af1fa546b386820a3d2 Mon Sep 17 00:00:00 2001
+From: John Lees <lees.john6@gmail.com>
+Date: Sat, 19 Dec 2020 16:00:45 +0000
+Subject: [PATCH] Add CUDA sm86 to Makefile
+
+---
+ src/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/Makefile b/src/Makefile
+index 82e2058..70e5139 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -30,7 +30,7 @@ LDFLAGS+= -L$(LIBLOC)/lib
+ CUDA_LDLIBS=-lcudadevrt -lcudart_static $(LDLIBS)
+ 
+ CUDA_LDFLAGS =-L$(LIBLOC)/lib -L${CUDA_HOME}/targets/x86_64-linux/lib/stubs -L${CUDA_HOME}/targets/x86_64-linux/lib
+-CUDAFLAGS +=-Xcompiler -fPIC -Xptxas -dlcm=ca --cudart static --relocatable-device-code=true -gencode arch=compute_70,code=sm_70 -gencode arch=compute_75,code=sm_75
++CUDAFLAGS +=-Xcompiler -fPIC -Xptxas -dlcm=ca --cudart static --relocatable-device-code=true -gencode arch=compute_70,code=sm_70 -gencode arch=compute_75,code=sm_75 -gencode arch=compute_86,code=sm_86
+ ifdef GPU
+ 	CXXFLAGS += -DGPU_AVAILABLE
+ 	CUDAFLAG += -gencode arch=compute_86,code=sm_86
+-- 
+2.28.0
+

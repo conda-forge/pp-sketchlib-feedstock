@@ -9,12 +9,13 @@ source:
   url: https://github.com/johnlees/{{ name|lower }}/archive/v{{ version }}.tar.gz
   sha256: f35dd697ae955cea7314fe42c014a9f0dac50acb838ec97fe8dad39e909b8fa2
   patches:
-    - 0001-Try-editing-CUDA-policy.patch
+    - 0001-Add-CUDA-sm86-to-Makefile.patch
 
 build:
   number: 0
   skip: true  # [py2k or win or cuda_compiler_version == '9.2']
   script:
+    - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
     - {{ PYTHON }} -m pip install . --no-deps -vv
   missing_dso_whitelist:
     - '*/libcuda.*'
