@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/johnlees/{{ name|lower }}/archive/v{{ version }}.tar.gz
   sha256: f35dd697ae955cea7314fe42c014a9f0dac50acb838ec97fe8dad39e909b8fa2
+  patches:
+    - 0001-Try-editing-CUDA-policy.patch
 
 build:
   number: 0
@@ -27,7 +29,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
-    - cmake
+    - cmake >= 3.19
   host:
     - python
     - pip
