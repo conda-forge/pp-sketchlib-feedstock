@@ -1,5 +1,5 @@
 {% set name = "pp-sketchlib" %}
-{% set version = "1.6.4" %}
+{% set version = "1.6.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,12 @@ package:
 
 source:
   url: https://github.com/johnlees/{{ name|lower }}/archive/v{{ version }}.tar.gz
-  sha256: b3670f3b9fdcdb34fca324b71539deba0bce3ee42c89779fef42a31cfd0bcc18
+  sha256: 82157fa78d7c461a7dc71dceb316360cc269083f037639b8cf5867d0e853ebad
 
 build:
   number: 0
-  skip: true  # [py2k or win or cuda_compiler_version == "9.2" or cuda_compiler_version == "10.0" or cuda_compiler_version == "10.1" or cuda_compiler_version == "10.2"]
+  ? skip__###conda-selector###__py2k or win or cuda_compiler_version == "9.2" or cuda_compiler_version == "10.0" or cuda_compiler_version == "10.1" or cuda_compiler_version == "10.2"
+  : true
   script:
     - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
     - {{ PYTHON }} -m pip install . --no-deps -vv
