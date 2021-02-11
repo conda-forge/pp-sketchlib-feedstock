@@ -11,8 +11,7 @@ source:
 
 build:
   number: 0
-  ? skip__###conda-selector###__py2k or win or cuda_compiler_version == "9.2" or cuda_compiler_version == "10.0" or cuda_compiler_version == "10.1" or cuda_compiler_version == "10.2"
-  : true
+  skip: true  # [py2k or win or cuda_compiler_version == "9.2" or cuda_compiler_version == "10.0" or cuda_compiler_version == "10.1" or cuda_compiler_version == "10.2"]
   script:
     - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
     - {{ PYTHON }} -m pip install . --no-deps -vv
