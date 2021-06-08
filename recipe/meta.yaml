@@ -1,5 +1,5 @@
 {% set name = "pp-sketchlib" %}
-{% set version = "1.7.1" %}
+{% set version = "1.7.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/johnlees/{{ name|lower }}/archive/v{{ version }}.tar.gz
-  sha256: 76b5cf1dc21cdc38840d1948d5b5082b5118e18886b70b1ec1a385d2ab67b180
+  sha256: 3fe676aecaa68c3d79afc72c089718c50a4b65b810d712f67933956c19271db3
 
 build:
   number: 0
