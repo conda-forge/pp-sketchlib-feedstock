@@ -13,7 +13,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [py2k or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0")]
+  skip: true  # [py<38 or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0")]
   script:
     - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
     - {{ PYTHON }} -m pip install . --no-deps -vv
@@ -33,7 +33,7 @@ requirements:
     - cmake >=3.19
     - make
   host:
-    - python >=3.8
+    - python
     - pip
     - pybind11
     - highfive
