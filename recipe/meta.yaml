@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/johnlees/{{ name|lower }}/archive/v{{ version }}.tar.gz
+  url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
   sha256: 3cebb9d53281deaaaa20582a315f74497d0d13892f8892c3b927e1333a54c773
 
 build:
@@ -21,7 +21,7 @@ build:
     - cudatoolkit
     - armadillo
   entry_points:
-    - poppunk_sketch = pp_sketch.__main__:main
+    - sketchlib = pp_sketch.__main__:main
 
 requirements:
   build:
@@ -29,6 +29,7 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
     - cmake >=3.19
+    - make
   host:
     - python
     - pip
@@ -49,14 +50,15 @@ requirements:
     - openblas
     - zlib
     - h5py
+    - docopt
     - libgfortran-ng        # [linux64]
     - gfortran_impl_osx-64  # [osx]
 
 test:
   imports:
-    - pp_sketch
+    - pp_sketchlib
   commands:
-    - poppunk_sketch --version
+    - sketchlib --version
 
 about:
   home: https://github.com/johnlees/pp-sketchlib
@@ -64,13 +66,14 @@ about:
   license_file:
     - NOTICE
     - LICENSE
+    - LICENSE_highfive
     - LICENSE_bindash
     - LICENSE_nthash
     - LICENSE_kseq
     - LICENSE_json.txt
   summary: Library of sketching functions used by PopPUNK
   doc_url: https://www.poppunk.net
-  dev_url: https://github.com/johnlees/pp-sketchlib
+  dev_url: https://github.com/bacpop/pp-sketchlib
 
 extra:
   recipe-maintainers:
