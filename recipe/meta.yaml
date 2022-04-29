@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
   sha256: 3cebb9d53281deaaaa20582a315f74497d0d13892f8892c3b927e1333a54c773
+  patches:
+    - 0001-Add-some-prints.patch
 
 build:
   number: 0
@@ -31,7 +33,7 @@ requirements:
     - cmake >=3.19
     - make
   host:
-    - python
+    - python >=3.8
     - pip
     - pybind11
     - highfive
