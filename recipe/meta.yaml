@@ -1,17 +1,17 @@
 {% set name = "pp-sketchlib" %}
-{% set version = "1.7.4" %}
+{% set version = "2.0.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/johnlees/{{ name|lower }}/archive/v{{ version }}.tar.gz
-  sha256: a6961ac0c2e3003e4b124eb1c2546c75634101d52584870e9fb7eb3b6942b4b7
+  url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
+  sha256: 3cebb9d53281deaaaa20582a315f74497d0d13892f8892c3b927e1333a54c773
 
 build:
-  number: 2
-  skip: true  # [py2k or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0")]
+  number: 0
+  skip: true  # [py<38 or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0")]
   script:
     - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
     - {{ PYTHON }} -m pip install . --no-deps -vv
@@ -21,7 +21,7 @@ build:
     - cudatoolkit
     - armadillo
   entry_points:
-    - poppunk_sketch = pp_sketch.__main__:main
+    - sketchlib = pp_sketch.__main__:main
 
 requirements:
   build:
@@ -29,6 +29,7 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
     - cmake >=3.19
+    - make
   host:
     - python
     - pip
@@ -49,14 +50,15 @@ requirements:
     - openblas
     - zlib
     - h5py
+    - docopt
     - libgfortran-ng        # [linux64]
     - gfortran_impl_osx-64  # [osx]
 
 test:
   imports:
-    - pp_sketch
+    - pp_sketchlib
   commands:
-    - poppunk_sketch --version
+    - sketchlib --version
 
 about:
   home: https://github.com/johnlees/pp-sketchlib
@@ -64,13 +66,14 @@ about:
   license_file:
     - NOTICE
     - LICENSE
+    - LICENSE_highfive
     - LICENSE_bindash
     - LICENSE_nthash
     - LICENSE_kseq
     - LICENSE_json.txt
   summary: Library of sketching functions used by PopPUNK
   doc_url: https://www.poppunk.net
-  dev_url: https://github.com/johnlees/pp-sketchlib
+  dev_url: https://github.com/bacpop/pp-sketchlib
 
 extra:
   recipe-maintainers:
