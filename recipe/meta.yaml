@@ -8,9 +8,11 @@ package:
 source:
   url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
   sha256: 3cebb9d53281deaaaa20582a315f74497d0d13892f8892c3b927e1333a54c773
+  patches:
+    - 0001-Move-find-openmp-in-cmakelists.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<38 or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0")]
   script:
     - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
