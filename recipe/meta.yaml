@@ -8,8 +8,6 @@ package:
 source:
   url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
   sha256: 6fca8adf8c85b686f5133133976cfb83f9e8607abaf9425cd5f5efc307b06787
-  patches:
-    - 0001-Move-find-openmp-in-cmakelists.patch
 
 build:
   number: 0
@@ -63,7 +61,7 @@ test:
     - sketchlib --version
 
 about:
-  home: https://github.com/johnlees/pp-sketchlib
+  home: https://github.com/bacpop/pp-sketchlib
   license: Apache-2.0 AND MIT
   license_file:
     - NOTICE
