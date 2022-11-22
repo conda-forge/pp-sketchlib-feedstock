@@ -1,5 +1,5 @@
 {% set name = "pp-sketchlib" %}
-{% set version = "2.0.1" %}
+{% set version = "2.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
-  sha256: 6fca8adf8c85b686f5133133976cfb83f9e8607abaf9425cd5f5efc307b06787
+  sha256: c56cb81610a8d7b3f44e73911286a8b79fbeafbb149840528310ad813b11c683
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<38 or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0")]
   script:
     - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
@@ -19,7 +19,6 @@ build:
     - '*/libcuda.*'
   ignore_run_exports:
     - cudatoolkit
-    - armadillo
   entry_points:
     - sketchlib = pp_sketch.__main__:main
 
@@ -37,7 +36,6 @@ requirements:
     - highfive
     - zlib
     - eigen
-    - armadillo
     - hdf5
     - openblas
     - llvm-openmp  # [osx]
@@ -62,7 +60,7 @@ test:
 
 about:
   home: https://github.com/bacpop/pp-sketchlib
-  license: Apache-2.0 AND MIT
+  license: Apache-2.0 AND MIT AND BSD-3-Clause
   license_file:
     - NOTICE
     - LICENSE
@@ -71,6 +69,7 @@ about:
     - LICENSE_nthash
     - LICENSE_kseq
     - LICENSE_json.txt
+    - LICENSE_KMeansRex
   summary: Library of sketching functions used by PopPUNK
   doc_url: https://www.poppunk.net
   dev_url: https://github.com/bacpop/pp-sketchlib
