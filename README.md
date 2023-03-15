@@ -1,11 +1,11 @@
-About pp-sketchlib
-==================
+About pp-sketchlib-feedstock
+============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pp-sketchlib-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/bacpop/pp-sketchlib
 
 Package license: Apache-2.0 AND MIT AND BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pp-sketchlib-feedstock/blob/main/LICENSE.txt)
 
 Summary: Library of sketching functions used by PopPUNK
 
