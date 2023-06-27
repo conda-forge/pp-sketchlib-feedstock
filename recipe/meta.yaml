@@ -26,6 +26,9 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    # Drop `libcxx` when the upstream issue is fixed
+    # xref: https://github.com/bacpop/pp-sketchlib/issues/92
+    - libcxx                  # [osx]
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
     - cmake >=3.19
     - make
@@ -38,6 +41,9 @@ requirements:
     - eigen
     - hdf5
     - openblas
+    # Drop `libcxx` when the upstream issue is fixed
+    # xref: https://github.com/bacpop/pp-sketchlib/issues/92
+    - libcxx       # [osx]
     - llvm-openmp  # [osx]
     - libgomp      # [linux64]
   run:
