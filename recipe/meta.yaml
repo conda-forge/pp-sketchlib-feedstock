@@ -10,7 +10,7 @@ source:
   sha256: b42acf0a58ea3225e3fe95adc8fc165578832c58e6f5b6fb3f7817655e0a9f30
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<38 or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0")]
   script:
     - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
@@ -26,6 +26,9 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    # Drop `libcxx` when the upstream issue is fixed
+    # xref: https://github.com/bacpop/pp-sketchlib/issues/92
+    - libcxx                  # [osx]
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
     - cmake >=3.19
     - make
@@ -38,6 +41,9 @@ requirements:
     - eigen
     - hdf5
     - openblas
+    # Drop `libcxx` when the upstream issue is fixed
+    # xref: https://github.com/bacpop/pp-sketchlib/issues/92
+    - libcxx       # [osx]
     - llvm-openmp  # [osx]
     - libgomp      # [linux64]
   run:
