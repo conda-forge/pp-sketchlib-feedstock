@@ -16,6 +16,8 @@ cxx_compiler_version:
 - '15'
 hdf5:
 - 1.14.1
+libcxx:
+- '14'
 llvm_openmp:
 - '15'
 macos_machine:

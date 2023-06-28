@@ -1,0 +1,13 @@
+###########################################################
+# Drop this file when the upstream issue is fixed.        #
+#                                                         #
+# xref: https://github.com/bacpop/pp-sketchlib/issues/92  #
+###########################################################
+c_compiler_version:            # [osx]
+  - 14                         # [osx]
+cxx_compiler_version:          # [osx]
+  - 14                         # [osx]
+libcxx:                        # [osx]
+  - 14                         # [osx]
+llvm_openmp:                   # [osx]
+  - 14                         # [osx]
