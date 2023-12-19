@@ -1,5 +1,5 @@
 {% set name = "pp-sketchlib" %}
-{% set version = "2.1.1" %}
+{% set version = "2.1.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
-  sha256: b42acf0a58ea3225e3fe95adc8fc165578832c58e6f5b6fb3f7817655e0a9f30
+  sha256: e61792c24b0a3865aa8555ea5fe575771a3b78eecd45fc40ac5c5057a00baafe
 
 build:
-  number: 2
+  number: 0
   skip: true  # [py<38 or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0")]
   script:
     - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
