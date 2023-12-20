@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
   sha256: e61792c24b0a3865aa8555ea5fe575771a3b78eecd45fc40ac5c5057a00baafe
+  patches:
+    - 0001-Fix-for-HDF5-linking-on-conda-OS-X.patch
 
 build:
   number: 0
