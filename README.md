@@ -336,6 +336,3 @@ Feedstock Maintainers
 
 * [@johnlees](https://github.com/johnlees/)
 
-
-<!-- dummy commit to enable rerendering -->
-
