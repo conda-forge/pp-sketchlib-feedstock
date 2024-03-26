@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
   sha256: 093db6840caad909ddb5159ba0a64a4822155e0bc18d2cbabc0c8a5bcf351026
+  patches:
+    - 0001-Fix-for-type-of-index-on-llvm-compiler.patch
 
 build:
   number: 0
