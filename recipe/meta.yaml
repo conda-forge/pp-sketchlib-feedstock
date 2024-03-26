@@ -8,8 +8,6 @@ package:
 source:
   url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
   sha256: 093db6840caad909ddb5159ba0a64a4822155e0bc18d2cbabc0c8a5bcf351026
-  patches:
-    - 0001-Fix-for-HDF5-linking-on-conda-OS-X.patch
 
 build:
   number: 0
@@ -72,8 +70,9 @@ about:
     - LICENSE_kseq
     - LICENSE_json.txt
     - LICENSE_KMeansRex
+    - LICENSE_unordered_dense
   summary: Library of sketching functions used by PopPUNK
-  doc_url: https://www.poppunk.net
+  doc_url: https://poppunk.bacpop.org/
   dev_url: https://github.com/bacpop/pp-sketchlib
 
 extra:
