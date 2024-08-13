@@ -12,11 +12,11 @@ source:
     - 0001-Fix-for-type-of-index-on-llvm-compiler.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<38 or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0")]
   script:
     - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
-    - {{ PYTHON }} -m pip install . --no-deps -vvv
+    - {{ PYTHON }} -m pip install . -vvv
   missing_dso_whitelist:
     - '*/libcuda.*'
   ignore_run_exports:
@@ -26,11 +26,15 @@ build:
 
 requirements:
   build:
+    - {{ stdlib("c") }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
     - cmake >=3.19
     - make
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - pybind11                               # [build_platform != target_platform]
   host:
     - python
     - pip
