@@ -1,0 +1,25 @@
+diff --git i/CMakeLists.txt w/CMakeLists.txt
+index 0adda45..a813d93 100644
+--- i/CMakeLists.txt
++++ w/CMakeLists.txt
+@@ -38,7 +38,7 @@ if(UNIX AND NOT APPLE)
+ endif()
+ 
+ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -ffast-math -funroll-loops -m64")
++set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -ffast-math -funroll-loops")
+ 
+ # Set paths for non standard lib/ and include/ locations
+ if(DEFINED ENV{CONDA_PREFIX})
+diff --git i/src/Makefile w/src/Makefile
+index feac46b..fd2944c 100644
+--- i/src/Makefile
++++ w/src/Makefile
+@@ -14,7 +14,6 @@ UNAME_S := $(shell uname -s)
+ LIBLOC = ${CONDA_PREFIX}
+ LDLIBS = -lz -lhdf5_cpp -lhdf5 -lopenblas -lgomp
+ ifeq ($(UNAME_S),Linux)
+-	CXXFLAGS+= -m64
+ 	ifdef PROFILE
+ 		CXXFLAGS+= -Wl,--compress-debug-sections=none
+ 	endif
