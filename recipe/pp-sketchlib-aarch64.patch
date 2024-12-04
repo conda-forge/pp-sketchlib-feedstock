@@ -12,10 +12,14 @@ index 0adda45..a813d93 100644
  # Set paths for non standard lib/ and include/ locations
  if(DEFINED ENV{CONDA_PREFIX})
 diff --git i/src/Makefile w/src/Makefile
-index feac46b..0c13f0c 100644
+index feac46b..a719e39 100644
 --- i/src/Makefile
 +++ w/src/Makefile
-@@ -14,7 +14,6 @@ UNAME_S := $(shell uname -s)
+@@ -11,10 +11,10 @@ else
+ endif
+ 
+ UNAME_S := $(shell uname -s)
++UNAME_M := $(shell uname -m)
  LIBLOC = ${CONDA_PREFIX}
  LDLIBS = -lz -lhdf5_cpp -lhdf5 -lopenblas -lgomp
  ifeq ($(UNAME_S),Linux)
@@ -23,12 +27,21 @@ index feac46b..0c13f0c 100644
  	ifdef PROFILE
  		CXXFLAGS+= -Wl,--compress-debug-sections=none
  	endif
-@@ -29,7 +28,7 @@ CPPFLAGS+=-I"." -I$(LIBLOC)/include -I$(LIBLOC)/include/eigen3
+@@ -29,7 +29,7 @@ CPPFLAGS+=-I"." -I$(LIBLOC)/include -I$(LIBLOC)/include/eigen3
  LDFLAGS+= -L$(LIBLOC)/lib
  CUDA_LDLIBS=-lcudadevrt -lcudart_static $(LDLIBS)
  
 -CUDA_LDFLAGS =-L$(LIBLOC)/lib -L${CUDA_HOME}/targets/x86_64-linux/lib/stubs -L${CUDA_HOME}/targets/x86_64-linux/lib
-+CUDA_LDFLAGS =-L$(LIBLOC)/lib -L${CUDA_HOME}/targets/aarch64-linux/lib/stubs -L${CUDA_HOME}/targets/aarch64-linux/lib
++CUDA_LDFLAGS =-L$(LIBLOC)/lib -L${CUDA_HOME}/targets/$(UNAME_M)-linux/lib/stubs -L${CUDA_HOME}/targets/$(UNAME_M)-linux/lib
  CUDAFLAGS +=-std=c++17 -Xcompiler -fPIC --cudart static --relocatable-device-code=true --expt-relaxed-constexpr -gencode arch=compute_70,code=sm_70 -gencode arch=compute_75,code=sm_75
  ifdef GPU
  	CXXFLAGS += -DGPU_AVAILABLE
+@@ -37,7 +37,7 @@ ifdef GPU
+ 	CUDA_LDFLAGS += -L/usr/local/cuda-11.2/lib64
+ endif
+ 
+-PYTHON_LIB = pp_sketchlib$(shell python3-config --extension-suffix)
++PYTHON_LIB = pp_sketchlib.cpython-310-aarch64-linux-gnu.so
+ 
+ # python specific options
+ python: CPPFLAGS += -DGPU_AVAILABLE -DPYTHON_EXT -DNDEBUG -Dpp_sketchlib_EXPORTS $(shell python3 -m pybind11 --includes)
