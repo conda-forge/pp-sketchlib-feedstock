@@ -10,7 +10,7 @@ source:
   sha256: 093db6840caad909ddb5159ba0a64a4822155e0bc18d2cbabc0c8a5bcf351026
   patches:
     - 0001-Fix-for-type-of-index-on-llvm-compiler.patch
-    - pp-sketchlib-aarch64.patch
+    - pp-sketchlib-aarch64.patch # [aarch64]
 
 build:
   number: 4
