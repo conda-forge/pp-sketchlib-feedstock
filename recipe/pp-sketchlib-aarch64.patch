@@ -41,7 +41,7 @@ index feac46b..a719e39 100644
  endif
  
 -PYTHON_LIB = pp_sketchlib$(shell python3-config --extension-suffix)
-+PYTHON_LIB = pp_sketchlib.cpython-310-aarch64-linux-gnu.so
++PYTHON_LIB = pp_sketchlib$(shell python -c 'import sysconfig; print(sysconfig.get_config_var("EXT_SUFFIX"))')
  
  # python specific options
  python: CPPFLAGS += -DGPU_AVAILABLE -DPYTHON_EXT -DNDEBUG -Dpp_sketchlib_EXPORTS $(shell python3 -m pybind11 --includes)
