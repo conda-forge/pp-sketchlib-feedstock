@@ -32,7 +32,7 @@ index feac46b..a719e39 100644
  CUDA_LDLIBS=-lcudadevrt -lcudart_static $(LDLIBS)
  
 -CUDA_LDFLAGS =-L$(LIBLOC)/lib -L${CUDA_HOME}/targets/x86_64-linux/lib/stubs -L${CUDA_HOME}/targets/x86_64-linux/lib
-+CUDA_LDFLAGS =-L$(LIBLOC)/lib -L${CUDA_HOME}/targets/$(UNAME_M)-linux/lib/stubs -L${CUDA_HOME}/targets/$(UNAME_M)-linux/lib
++CUDA_LDFLAGS =-L$(LIBLOC)/lib -L${CUDA_HOME}/targets/sbsa-linux/lib/stubs -L${CUDA_HOME}/targets/sbsa-linux/lib
  CUDAFLAGS +=-std=c++17 -Xcompiler -fPIC --cudart static --relocatable-device-code=true --expt-relaxed-constexpr -gencode arch=compute_70,code=sm_70 -gencode arch=compute_75,code=sm_75
  ifdef GPU
  	CXXFLAGS += -DGPU_AVAILABLE
