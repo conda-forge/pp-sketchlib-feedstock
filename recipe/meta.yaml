@@ -12,7 +12,7 @@ source:
     - 0001-Fix-for-type-of-index-on-llvm-compiler.patch
 
 build:
-  number: 3
+  number: 4
   skip: true  # [py<38 or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0")]
   script:
     - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
