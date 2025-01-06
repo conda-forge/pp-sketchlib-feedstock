@@ -1,5 +1,5 @@
 {% set name = "pp-sketchlib" %}
-{% set version = "2.1.3" %}
+{% set version = "2.1.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,15 +7,16 @@ package:
 
 source:
   url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
-  sha256: 093db6840caad909ddb5159ba0a64a4822155e0bc18d2cbabc0c8a5bcf351026
+  sha256: c8bbf8bf98dcc757121397b729c9bda2bc56bee6914d4f5eac85a833b23ae0e2
   patches:
     - 0001-Fix-for-type-of-index-on-llvm-compiler.patch
+    - pp-sketchlib-aarch64.patch  # [aarch64]
 
 build:
-  number: 4
+  number: 0
   skip: true  # [py<38 or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0")]
   script:
-    - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != "None"]
+    - export SKETCHLIB_INSTALL=conda  # [linux and cuda_compiler_version != "None"]
     - {{ PYTHON }} -m pip install . -vvv
   missing_dso_whitelist:
     - '*/libcuda.*'
@@ -29,7 +30,7 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
+    - {{ compiler('cuda') }}  # [linux and cuda_compiler_version != "None"]
     - cmake >=3.19
     - make
     - python                                 # [build_platform != target_platform]
@@ -46,7 +47,7 @@ requirements:
     - hdf5
     - openblas
     - llvm-openmp  # [osx]
-    - libgomp      # [linux64]
+    - libgomp      # [linux]
   run:
     - python
     - numpy
@@ -56,7 +57,7 @@ requirements:
     - zlib
     - h5py
     - docopt
-    - libgfortran           # [linux64]
+    - libgfortran           # [linux]
     - gfortran_impl_osx-64  # [osx]
 
 test:
