@@ -19,7 +19,7 @@ build:
     - CUDA_HOME={{ BUILD_PREFIX }}/targets/x86_64-linux    # [linux64 and cuda_compiler_version not in ("None", "11.8")]
     - CUDA_HOME={{ BUILD_PREFIX }}/targets/sbsa-linux      # [linux and aarch64 and cuda_compiler_version not in ("None", "11.8")]
     - CUDA_HOME={{ BUILD_PREFIX }}/targets/ppc64le-linux   # [linux and ppc64le and cuda_compiler_version not in ("None", "11.8")]
-    - SKETCHLIB_INSTALL=conda                              # [linux and cuda_compiler_version not in ("None", "11.8")]
+    - SKETCHLIB_INSTALL=conda                              # [cuda_compiler_version not in ("None", "11.8")]
   script:
     - echo $SKETCHLIB_INSTALL
     - echo $CUDA_HOME
