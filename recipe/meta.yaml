@@ -9,7 +9,6 @@ source:
   url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
   sha256: c8bbf8bf98dcc757121397b729c9bda2bc56bee6914d4f5eac85a833b23ae0e2
   patches:
-    - 0001-Fix-for-type-of-index-on-llvm-compiler.patch
     - pp-sketchlib-aarch64.patch  # [aarch64]
 
 build:
@@ -17,10 +16,10 @@ build:
   skip: true  # [py<38 or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0")]
   script_env:
     # Ensure that CUDA includes can be found by the host compiler
-    - CUDA_HOME={{ os.sep.join([BUILD_PREFIX, "targets", "x86_64-linux"]) }}  # [linux64 and cuda_compiler_version not in ("None", "11.8")]
-    - CUDA_HOME={{ os.sep.join([BUILD_PREFIX, "targets", "sbsa-linux"]) }}    # [linux and aarch64 and cuda_compiler_version not in ("None", "11.8")]
-    - CUDA_HOME={{ os.sep.join([BUILD_PREFIX, "targets", "ppc64le-linux"]) }}    # [linux and ppc64le and cuda_compiler_version not in ("None", "11.8")]
-    - SKETCHLIB_INSTALL=conda                                                 # [linux and cuda_compiler_version not in ("None", "11.8")]
+    - CUDA_HOME={{ BUILD_PREFIX }}/targets/x86_64-linux    # [linux64 and cuda_compiler_version not in ("None", "11.8")]
+    - CUDA_HOME={{ BUILD_PREFIX }}/targets/sbsa-linux      # [linux and aarch64 and cuda_compiler_version not in ("None", "11.8")]
+    - CUDA_HOME={{ BUILD_PREFIX }}/targets/ppc64le-linux   # [linux and ppc64le and cuda_compiler_version not in ("None", "11.8")]
+    - SKETCHLIB_INSTALL=conda                              # [linux and cuda_compiler_version not in ("None", "11.8")]
   script:
     - {{ PYTHON }} -m pip install . -vvv
   missing_dso_whitelist:
