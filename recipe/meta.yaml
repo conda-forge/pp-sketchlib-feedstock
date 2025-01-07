@@ -9,7 +9,7 @@ source:
   url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
   sha256: c8bbf8bf98dcc757121397b729c9bda2bc56bee6914d4f5eac85a833b23ae0e2
   patches:
-    - pp-sketchlib-aarch64.patch  # [aarch64]
+    - pp-sketchlib-aarch64.patch  # [aarch64 or ppc64le]
 
 build:
   number: 0
