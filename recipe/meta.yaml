@@ -16,9 +16,9 @@ build:
   skip: true  # [py<38 or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0")]
   script_env:
     # Ensure that CUDA includes can be found by the host compiler
-    - CUDA_HOME={{ BUILD_PREFIX }}/targets/x86_64-linux    # [linux64 and cuda_compiler_version not in ("None", "11.8")]
-    - CUDA_HOME={{ BUILD_PREFIX }}/targets/sbsa-linux      # [linux and aarch64 and cuda_compiler_version not in ("None", "11.8")]
-    - CUDA_HOME={{ BUILD_PREFIX }}/targets/ppc64le-linux   # [linux and ppc64le and cuda_compiler_version not in ("None", "11.8")]
+    - CUDA_HOME={{ BUILD_PREFIX }}/targets/x86_64-linux    # [linux64 and cuda_compiler_version != "None"]
+    - CUDA_HOME={{ BUILD_PREFIX }}/targets/sbsa-linux      # [linux and aarch64 and cuda_compiler_version != "None"]
+    - CUDA_HOME={{ BUILD_PREFIX }}/targets/ppc64le-linux   # [linux and ppc64le andcuda_compiler_version != "None"]
     # Uses src/Makefile rather than cmake with nvcc
     - SKETCHLIB_INSTALL=conda                              # [cuda_compiler_version != "None"]
   script:
