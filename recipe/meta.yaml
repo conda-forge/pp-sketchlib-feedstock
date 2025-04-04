@@ -1,5 +1,5 @@
 {% set name = "pp-sketchlib" %}
-{% set version = "2.1.4" %}
+{% set version = "2.1.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
-  sha256: c8bbf8bf98dcc757121397b729c9bda2bc56bee6914d4f5eac85a833b23ae0e2
+  sha256: beb7f76dec502d8ee5df770cd768929a1f25db793f972efe7208fe972c8face6
   patches:
     - pp-sketchlib-aarch64.patch  # [aarch64 or ppc64le]
 
