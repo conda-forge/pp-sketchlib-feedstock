@@ -21,7 +21,7 @@ index 00719ef..25c0dd2 100644
 -	CUDAFLAGS += -gencode arch=compute_86,code=sm_86
 -	CUDA_LDFLAGS += -L${CUDA_HOME}/lib64
 -endif
-+CUDAFLAGS +=-std=c++17 -Xcompiler -fPIC --cudart static --relocatable-device-code=true --expt-relaxed-constexpr -gencode arch=compute_75,code=sm_75 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,sm_100
++CUDAFLAGS +=-std=c++17 -Xcompiler -fPIC --cudart static --relocatable-device-code=true --expt-relaxed-constexpr -gencode arch=compute_75,code=sm_75 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,code=sm_100
  
  PYTHON_LIB = pp_sketchlib$(shell python3-config --extension-suffix)
  
