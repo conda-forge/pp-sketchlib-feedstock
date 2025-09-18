@@ -1,7 +1,7 @@
 From 0e6115826312d806bd1a54dd56f42722bc552d72 Mon Sep 17 00:00:00 2001
 From: John Lees <lees.john6@gmail.com>
 Date: Wed, 17 Sep 2025 11:52:09 +0100
-Subject: [PATCH] Update CUDA compute versions in makefile
+Subject: [PATCH 1/2] Update CUDA compute versions in makefile
 
 ---
  src/Makefile | 8 ++------
@@ -21,7 +21,7 @@ index 00719ef..25c0dd2 100644
 -	CUDAFLAGS += -gencode arch=compute_86,code=sm_86
 -	CUDA_LDFLAGS += -L${CUDA_HOME}/lib64
 -endif
-+CUDAFLAGS +=-std=c++17 -Xcompiler -fPIC --cudart static --relocatable-device-code=true --expt-relaxed-constexpr -gencode arch=compute_75,code=sm_75 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,code=sm_100
++CUDAFLAGS +=-std=c++17 -Xcompiler -fPIC --cudart static --relocatable-device-code=true --expt-relaxed-constexpr -gencode arch=compute_75,code=sm_75 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,sm_100
  
  PYTHON_LIB = pp_sketchlib$(shell python3-config --extension-suffix)
  
@@ -33,6 +33,44 @@ index 00719ef..25c0dd2 100644
  	nvcc $(CUDAFLAGS) $(CUDA_LDFLAGS) -Wno-deprecated-gpu-targets -shared -dlink $^ -o device_link.o -Xnvlink $(CUDA_LDLIBS)
  	$(LINK.cpp) $(CUDA_LDFLAGS) $(LDFLAGS) -shared $^ device_link.o -o $(PYTHON_LIB) $(CUDA_LDLIBS)
  
+-- 
+2.39.3 (Apple Git-146)
+
+
+From ac2ef97b07eada399e5fa0793a77fb588cbf6332 Mon Sep 17 00:00:00 2001
+From: John Lees <lees.john6@gmail.com>
+Date: Thu, 18 Sep 2025 11:53:21 +0100
+Subject: [PATCH 2/2] Move LD to top of makefile
+
+---
+ src/Makefile | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/src/Makefile b/src/Makefile
+index 25c0dd2..ad99bfa 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -29,8 +29,8 @@ CPPFLAGS+=-I"." -I$(LIBLOC)/include -I$(LIBLOC)/include/eigen3
+ LDFLAGS+= -L$(LIBLOC)/lib
+ CUDA_LDLIBS=-lcudadevrt -lcudart_static $(LDLIBS)
+ 
+-CUDA_LDFLAGS =-L$(LIBLOC)/lib -L${CUDA_HOME}/targets/x86_64-linux/lib/stubs -L${CUDA_HOME}/targets/x86_64-linux/lib
+-CUDAFLAGS +=-std=c++17 -Xcompiler -fPIC --cudart static --relocatable-device-code=true --expt-relaxed-constexpr -gencode arch=compute_75,code=sm_75 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,sm_100
++CUDA_LDFLAGS =-L$(LIBLOC)/lib -L${CUDA_HOME}/targets/x86_64-linux/lib/stubs -L${CUDA_HOME}/targets/x86_64-linux/lib -L${CUDA_HOME}/lib64
++CUDAFLAGS +=-std=c++17 -Xcompiler -fPIC --cudart static --relocatable-device-code=true --expt-relaxed-constexpr -gencode arch=compute_75,code=sm_75 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,code=sm_100
+ 
+ PYTHON_LIB = pp_sketchlib$(shell python3-config --extension-suffix)
+ 
+@@ -104,8 +104,7 @@ web/web_sketch.o: version.h
+ python: $(PYTHON_LIB)
+ 
+ $(PYTHON_LIB): $(SKETCH_OBJS) $(GPU_SKETCH_OBJS) $(CUDA_OBJS) sketchlib_bindings.o
+-	CUDA_LDFLAGS += -L${CUDA_HOME}/lib64
+-	nvcc $(CUDAFLAGS) $(CUDA_LDFLAGS) -Wno-deprecated-gpu-targets -shared -dlink $^ -o device_link.o -Xnvlink $(CUDA_LDLIBS)
++		nvcc $(CUDAFLAGS) $(CUDA_LDFLAGS) -Wno-deprecated-gpu-targets -shared -dlink $^ -o device_link.o -Xnvlink $(CUDA_LDLIBS)
+ 	$(LINK.cpp) $(CUDA_LDFLAGS) $(LDFLAGS) -shared $^ device_link.o -o $(PYTHON_LIB) $(CUDA_LDLIBS)
+ 
+ install_python: python
 -- 
 2.39.3 (Apple Git-146)
 
