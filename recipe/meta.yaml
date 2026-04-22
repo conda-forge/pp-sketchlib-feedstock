@@ -10,6 +10,7 @@ source:
   sha256: beb7f76dec502d8ee5df770cd768929a1f25db793f972efe7208fe972c8face6
   patches:
     - pp-sketchlib-aarch64.patch  # [aarch64 or ppc64le]
+    - cuda-13.patch  # [cuda_compiler_version == "13.0"]
 
 build:
   number: 3
