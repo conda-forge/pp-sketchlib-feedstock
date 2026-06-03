@@ -50,7 +50,7 @@ requirements:
     - pybind11
     - highfive
     - zlib
-    - eigen
+    - eigen ==3
     - hdf5
     - openblas
     - llvm-openmp  # [osx]
