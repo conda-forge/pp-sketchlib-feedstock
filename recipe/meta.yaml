@@ -1,5 +1,5 @@
 {% set name = "pp-sketchlib" %}
-{% set version = "2.1.5" %}
+{% set version = "2.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz
-  sha256: beb7f76dec502d8ee5df770cd768929a1f25db793f972efe7208fe972c8face6
+  sha256: 3f8b7030df254cedcd7eb953df3f7f9dc79c53eb26f86d56b11af35e37ab94cd
   patches:
     - pp-sketchlib-aarch64.patch  # [aarch64 or ppc64le]
 
 build:
-  number: 3
+  number: 0
   skip: true  # [py<38 or win or cuda_compiler_version in ("9.2", "10.0", "10.1", "10.2", "11.0", "11.8")]
   script_env:
     # Ensure that CUDA includes can be found by the host compiler
